@@ -1,4 +1,3 @@
-
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const config = require('./../webpack.config.js');
@@ -10,14 +9,16 @@ const request = require('request');
 //const sequelize = require('sequelize')
 
 const userController = require('./../db/user/userController');
-const sessionController = require('./session/sessionController')
+const sessionController = require('./session/sessionController');
 const cookieController = require('./util/cookieController');
 
 const app = express();
 
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath,
-}));
+app.use(
+  webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath
+  })
+);
 
 ///////////////////////////////
 //connect to Postgres database here
@@ -29,9 +30,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Render to index file
-app.get('/', cookieController.setCookie, (req, res) => {
-  res.render('./../client/index');
-});
+// app.get('/', cookieController.setCookie, (req, res) => {
+//   res.render('./../client/index');
+// });
 
 // Render to signup page
 app.get('/signup', (req, res) => {
@@ -65,7 +66,8 @@ app.get('/oauth', (req, res) => {
       const url = 'https://api.github.com/user?' + response.body;
 
       const options = {
-        url, headers: {
+        url,
+        headers: {
           'User-Agent': 'request',
           Accept: 'application/vnd.github.v3+json'
         }
@@ -73,7 +75,7 @@ app.get('/oauth', (req, res) => {
 
       request.get(options, (error, data) => {
         console.log(data);
-      })
+      });
     }
   );
 });
