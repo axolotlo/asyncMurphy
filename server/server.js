@@ -40,18 +40,18 @@ app.get('/signup', (req, res) => {
 });
 
 //Post to signup page
-app.post('/signup', userController.createUser, sessionController.createJwt);
+// app.post('/signup', userController.createUser, sessionController.createJwt);
 
-//Post to login page
-app.post('/login', userController.verifyUser);
+// //Post to login page
+// app.post('/login', userController.verifyUser);
 
-//able to see only if logged in
-app.get('/isLoggedin', sessionController.checkJwt, (req, res) => {
-  userController.getAllUsers((err, users) => {
-    if (err) throw err;
-    res.render('./../client/isLoggedIn', { users: users });
-  });
-});
+// //able to see only if logged in
+// app.get('/isLoggedin', sessionController.checkJwt, (req, res) => {
+//   userController.getAllUsers((err, users) => {
+//     if (err) throw err;
+//     res.render('./../client/isLoggedIn', { users: users });
+//   });
+// });
 
 //Oauth process
 app.get('/oauth', (req, res) => {
