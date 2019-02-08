@@ -47,8 +47,8 @@ app.get('/isLoggedin', sessionController.checkJwt, (req, res) => {
 //Oauth process
 app.get('/oauth', (req, res) => {
   const code = req.query.code;
-  const clientID = '050e885184cfe2efade9';
-  const secret = 'd5832569f4d77b2f38e792beeb9ca5f7c92e966d';
+  //const clientID = add client ID;
+  //const secret = add client secret;
 
   request.post(
     `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${secret}&code=${code}`,
