@@ -35,6 +35,12 @@
   },
   "dependencies": {
     "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "react-dom": "^16.8.1",
+    "bcryptjs": "^2.3.0",
+    "express-session": "^1.13.0",
+    "cookie-parser": "^1.4.1",
+    "request": "^2.88.0",
+    "sequelize": "^3.13.0",
+    "jsonwebtoken": "^8.4.0"
   }
 }
