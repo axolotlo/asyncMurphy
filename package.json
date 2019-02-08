@@ -1,0 +1,40 @@
+{
+  "name": "asyncMurphy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "watch": "webpack --watch",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danshuu/asyncMurphy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danshuu/asyncMurphy/issues"
+  },
+  "homepage": "https://github.com/danshuu/asyncMurphy#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "express": "^4.16.4",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-middleware": "^3.5.2"
+  },
+  "dependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  }
+}
