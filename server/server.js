@@ -1,5 +1,9 @@
+
+const webpack = require('webpack');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const config = require('./../webpack.config.js');
+const compiler = webpack(config);
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const request = require('request');
@@ -10,6 +14,10 @@ const sessionController = require('./session/sessionController')
 const cookieController = require('./util/cookieController');
 
 const app = express();
+
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+}));
 
 ///////////////////////////////
 //connect to Postgres database here
