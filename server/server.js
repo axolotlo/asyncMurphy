@@ -15,7 +15,7 @@ const app = express();
 //connect to Postgres database here
 ////////////////////////////
 
-app.set('view engine', 'ejs');
+//app.set(//insert react);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
