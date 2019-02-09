@@ -85,16 +85,7 @@ headers: {
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
-  console.log(program);
-  const script = esprima.parseScript(program);
-  // script.body.forEach((element) => {
-  //   console.log('type', element.type);
-  //   console.log('expression', element.expression);
-  //   console.log('arguments', element.expression.arguments);
-    console.log('arg1', element.expression.arguments[0].body.body[0].expression);
-  //   console.log('arg2', element.expression.arguments[1].value);
-
-  // });
+// Parse here
 });
 
 
