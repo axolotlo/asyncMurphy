@@ -14,19 +14,19 @@ class InputForm extends React.Component {
     console.log('RESPONSE IS ', response);
     //settimeout is hard coded for illustrative purposes
     //callback queue
-    this.props.updateStorage('callBackQueue', response.expression);
+    this.props.updateStorage('callBackQueue', response.expression, duration);
     await this.sleep(duration);
 
-    this.props.updateStorage('callStack', response.callback);
+    this.props.updateStorage('callStack', response.callback, duration);
     await this.sleep(duration);
 
     this.props.updateStorage('webApi', response.callback, response.duration);
     await this.sleep(response.duration);
 
-    this.props.updateStorage('callBackQueue', response.function);
+    this.props.updateStorage('callBackQueue', response.function, duration);
     await this.sleep(duration);
 
-    this.props.updateStorage('callStack', response.function);
+    this.props.updateStorage('callStack', response.function, duration);
     await this.sleep(duration);
 
     this.props.updateStorage('output', response.output);

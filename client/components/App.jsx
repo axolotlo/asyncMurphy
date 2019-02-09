@@ -38,13 +38,13 @@ class App extends Component {
     };
   }
 
-  updateStorage(id, element, popTime = 2000) {
+  updateStorage(id, element, popTime) {
     console.log('id', id);
     console.log('element', element);
     const copyStorage = [...this.state[id]];
     copyStorage.push(<StackFunction name={element} />);
     this.setState({ [id]: copyStorage });
-    if (id !== 'output') {
+    if (popTime) {
       setTimeout(async () => {
         const copyStorage2 = [...this.state[id]];
         copyStorage2.pop();
