@@ -10,10 +10,15 @@
 .webApi {
   grid-area: webApi;
 }
+.output {
+  grid-area: output;
+}
 
 .grid-container {
   display: grid;
-  grid-template-areas: 'textbox cbq callstack webApi';
+  grid-template-areas:
+    'textbox cbq callstack webApi'
+    'output output output output';
   grid-gap: 10px;
   background-color: #2196f3;
   padding: 10px;

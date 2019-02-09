@@ -10,14 +10,8 @@ class InputForm extends React.Component {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async demo() {
-    console.log('Taking a break...');
-    await sleep(2000);
-    console.log('Two seconds later');
-  }
-
-  async flow(response, duration) {
-    console.log('RESPONSE IS ', response.result);
+  async asyncFlow(response, duration) {
+    console.log('RESPONSE IS ', response);
     //settimeout is hard coded for illustrative purposes
     //callback queue
     this.props.updateStorage('callBackQueue', response.expression);
@@ -34,6 +28,9 @@ class InputForm extends React.Component {
 
     this.props.updateStorage('callStack', response.function);
     await this.sleep(duration);
+
+    this.props.updateStorage('output', response.output);
+    // await this.sleep(duration);
   }
 
   handleSubmit(event) {
@@ -55,41 +52,9 @@ class InputForm extends React.Component {
         }
         this.props.outputError(false);
         if (response.isAsync) {
-          this.flow(
-            response,
-            2000
-          );
-          //   console.log('RESPONSE IS ', response.result);
-          //   //settimeout is hard coded for illustrative purposes
-          //   //callback queue
-          //   this.props.updateStorage('callBackQueue', response.result);
-          //   // setTimeout(() => {
-          //   //   this.props.popStack('callBackQueue');
-          //   // }, 1000);
-          //   // callStack
-          //   this.props.updateStorage('callStack', response.result[0]);
-          //   // setTimeout(() => {
-          //   //   this.props.popStack('callStack');
-          //   // }, 1000);
-          //   //webapi
-          //   this.props.updateStorage('webApi', response.result[1]);
-          //   // setTimeout(() => {
-          //   //   this.props.popStack('webApi');
-          //   // }, response[2]);
-          //   //callback queue
-          //   this.props.updateStorage('callBackQueue', response.result[1]);
-          //   // setTimeout(() => {
-          //   //   this.props.popStack('callBackQueue');
-          //   // }, 1000);
-          //   // callStack
-          //   this.props.updateStorage('callStack', response.result[1]);
-          //   // setTimeout(() => {
-          //   //   this.props.popStack('callStack');
-          //   // }, 1000);
-          // }
-
-          //else (not async)
+          this.asyncFlow(response, 1000);
         }
+        //IF NOT ASYNC
       })
       .catch(error => console.log(error)); // parses response to JSON
   }

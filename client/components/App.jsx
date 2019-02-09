@@ -14,6 +14,7 @@ class App extends Component {
       callStack: [],
       callBackQueue: [],
       webApi: [],
+      output: [],
       textBoxValue: '',
       error: ''
     };
@@ -43,12 +44,13 @@ class App extends Component {
     const copyStorage = [...this.state[id]];
     copyStorage.push(<StackFunction name={element} />);
     this.setState({ [id]: copyStorage });
-
-    setTimeout(async () => {
-      const copyStorage2 = [...this.state[id]];
-      copyStorage2.pop();
-      this.setState({ [id]: copyStorage2 });
-    }, popTime);
+    if (id !== 'output') {
+      setTimeout(async () => {
+        const copyStorage2 = [...this.state[id]];
+        copyStorage2.pop();
+        this.setState({ [id]: copyStorage2 });
+      }, popTime);
+    }
   }
 
   // popStack(id) {
@@ -64,7 +66,7 @@ class App extends Component {
   }
 
   render() {
-    const { callStack, callBackQueue, webApi, textBoxValue, error } = this.state;
+    const { callStack, callBackQueue, webApi, output, textBoxValue, error } = this.state;
     return (
       <div className="grid-container">
         <InputBox
@@ -74,6 +76,7 @@ class App extends Component {
           callStack={callStack}
           callBackQueue={callBackQueue}
           webApi={webApi}
+          output={output}
           error={error}
           updateStorage={this.updateStorage}
           popStack={this.popStack}
@@ -82,6 +85,7 @@ class App extends Component {
         <CallStorage popStack={this.popStack} className="callBackQueue" storage={callBackQueue} />
         <CallStorage popStack={this.popStack} className="callStack" storage={callStack} />
         <CallStorage popStack={this.popStack} className="webApi" storage={webApi} />
+        <CallStorage popStack={this.popStack} className="output" storage={output} />
       </div>
     );
   }
