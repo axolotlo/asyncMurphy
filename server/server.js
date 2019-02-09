@@ -83,13 +83,16 @@ app.get('/oauth', (req, res) => {
     }
   );
 });
-function parse(input) {
-  return input.match(/setTimeout\((.*)\,(.*)\)/);
-}
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
-  const result = parse(program);
+  if (program[program.length - 1] !== ';') return res.json('Error');
+  const result = program.match(/setTimeout\((.*)\,(.*)\)/);
+
+  const newResult = {
+    result,
+    type: 'async'
+  };
   res.json(result);
 });
 
