@@ -92,13 +92,19 @@ app.post('/parse', (req, res) => {
   const newResult = {};
 
   if (program.match(criteria[0])) {
+    let array = program.match(criteria[0]);
     newResult.isAsync = true;
-    newResult.result = program.match(criteria[0]);
+    // newResult.result = program.match(criteria[0]);
+    newResult.expression = array[0];
+    newResult.callback = array[1];
+    newResult.function = array[1].match(criteria[1])[0];
+    newResult.output = array[1].match(criteria[1])[1];
+    newResult.duration = array[2];
   } else if (program.match(criteria[1])) {
     newResult.isAsync = false;
     newResult.result = program.match(criteria[1]);
   }
-  if (newResult.result) {
+  if (newResult.expression) {
     console.log('result is ', newResult);
     return res.json(newResult);
   }

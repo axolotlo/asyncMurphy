@@ -37,7 +37,7 @@ class App extends Component {
     };
   }
 
-  updateStorage(id, element, count) {
+  updateStorage(id, element, popTime = 2000) {
     console.log('id', id);
     console.log('element', element);
     const copyStorage = [...this.state[id]];
@@ -48,7 +48,7 @@ class App extends Component {
       const copyStorage2 = [...this.state[id]];
       copyStorage2.pop();
       this.setState({ [id]: copyStorage2 });
-    }, 2000);
+    }, popTime);
   }
 
   // popStack(id) {

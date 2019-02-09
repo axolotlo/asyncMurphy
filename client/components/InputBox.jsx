@@ -16,25 +16,24 @@ class InputForm extends React.Component {
     console.log('Two seconds later');
   }
 
-  async flow(response) {
+  async flow(response, duration) {
     console.log('RESPONSE IS ', response.result);
     //settimeout is hard coded for illustrative purposes
     //callback queue
-    this.props.updateStorage('callBackQueue', response.result[0]);
-    await this.sleep(2000);
+    this.props.updateStorage('callBackQueue', response.expression);
+    await this.sleep(duration);
 
-    this.props.updateStorage('callStack', response.result[0]);
-    await this.sleep(2000);
+    this.props.updateStorage('callStack', response.callback);
+    await this.sleep(duration);
 
-    this.props.updateStorage('webApi', response.result[1]);
-    await this.sleep(response.result[2]);
+    this.props.updateStorage('webApi', response.callback, response.duration);
+    await this.sleep(response.duration);
 
-    this.props.updateStorage('callBackQueue', response.result[1]);
-    await this.sleep(2000);
-    let callback = response.result[1];
+    this.props.updateStorage('callBackQueue', response.function);
+    await this.sleep(duration);
 
-    this.props.updateStorage('callStack', response.result[1]);
-    await this.sleep(2000);
+    this.props.updateStorage('callStack', response.function);
+    await this.sleep(duration);
   }
 
   handleSubmit(event) {
@@ -56,7 +55,10 @@ class InputForm extends React.Component {
         }
         this.props.outputError(false);
         if (response.isAsync) {
-          this.flow(response);
+          this.flow(
+            response,
+            2000
+          );
           //   console.log('RESPONSE IS ', response.result);
           //   //settimeout is hard coded for illustrative purposes
           //   //callback queue
