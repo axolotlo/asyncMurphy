@@ -3,7 +3,7 @@ import StackFunction from './StackFunction.jsx';
 
 import '../../css/styles.css';
 
-class CallStack extends Component {
+class CallStorage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,7 +13,6 @@ class CallStack extends Component {
 
   render() {
     const { stack } = this.state;
-
     return (
       <div className={this.props.className} style={this.state.divStyle}>
         {this.props.className}
@@ -23,4 +22,4 @@ class CallStack extends Component {
   }
 }
 
-export default CallStack;
+export default CallStorage;

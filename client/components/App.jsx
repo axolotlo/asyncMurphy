@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
-import SignIn from "./SignIn.jsx";
+import React, { Component } from 'react';
+import SignIn from './SignIn.jsx';
 
-import InputBox from "./InputBox.jsx"
-import CallStack from "./CallStack.jsx"
+import InputBox from './InputBox.jsx';
+import CallStorage from './CallStorage.jsx';
 
-import '../../css/styles.css'
+import '../../css/styles.css';
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      callStack: [],
+      callBackQueue: [],
+      webApi: []
+    };
+  }
 
-  return (
-    <div className='grid-container'>
-      <InputBox  className='textBox'  />
-      <CallStack className='callbackQueue' color='blue' />
-      <CallStack className='callStack' color='yellow' />
-      <CallStack className='webApi' color='green'/>
-    </div>
-  )
+  render() {
+    const { callStack, callBackQueue, webApi } = this.state;
+    return (
+      <div className="grid-container">
+        <InputBox className="textBox" />
+        <CallStorage className="callbackQueue" storage={callStack} />
+        <CallStorage className="callStack" storage={callBackQueue} />
+        <CallStorage className="webApi" storage={webApi} />
+      </div>
+    );
+  }
 }
 
 export default App;
