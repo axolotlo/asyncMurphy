@@ -1,15 +1,26 @@
-.textBox { grid-area: textbox; }
-.callbackQueue { grid-area: cbq; }
-.callStack { grid-area: callstack; }
-.webApi { grid-area: webApi; }
-
+.textBox {
+  grid-area: textbox;
+}
+.callBackQueue {
+  grid-area: cbq;
+}
+.callStack {
+  grid-area: callstack;
+}
+.webApi {
+  grid-area: webApi;
+}
+.output {
+  grid-area: output;
+}
 
 .grid-container {
   display: grid;
   grid-template-areas:
-    'textbox cbq callstack webApi';
+    'textbox cbq callstack webApi'
+    'output output output output';
   grid-gap: 10px;
-  background-color: #2196F3;
+  background-color: #2196f3;
   padding: 10px;
 }
 
@@ -18,4 +29,8 @@
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
+}
+
+.flex-container {
+  display: flex;
 }

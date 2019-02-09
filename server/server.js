@@ -23,6 +23,8 @@ app.use(
   })
 );
 
+// app.use('/src', express.static(__dirname + '/src'));
+
 // /////////////////////////////
 // connect to Postgres database here
 // //////////////////////////
@@ -83,14 +85,32 @@ app.get('/oauth', (req, res) => {
     }
   );
 });
-function parse(input) {
-  return input.match(/setTimeout\((.*)\,(.*)\)/);
-}
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
-  const result = parse(program);
-  res.json(result);
+  let criteria = [/setTimeout\((.*)\,(.*)\)/, /console.log\((.*)\)/];
+  if (program[program.length - 1] !== ';') return res.json('Error');
+  // const result = program.match(/setTimeout\((.*)\,(.*)\)/);
+  const newResult = {};
+
+  if (program.match(criteria[0])) {
+    let array = program.match(criteria[0]);
+    newResult.isAsync = true;
+    // newResult.result = program.match(criteria[0]);
+    newResult.expression = array[0];
+    newResult.callback = array[1];
+    newResult.function = array[1].match(criteria[1])[0];
+    newResult.output = array[1].match(criteria[1])[1];
+    newResult.duration = array[2];
+  } else if (program.match(criteria[1])) {
+    newResult.isAsync = false;
+    newResult.result = program.match(criteria[1]);
+  }
+  if (newResult.expression) {
+    console.log('result is ', newResult);
+    return res.json(newResult);
+  }
+  return res.json('Error');
 });
 
 app.listen(3000);

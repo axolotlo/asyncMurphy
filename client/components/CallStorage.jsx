@@ -3,20 +3,34 @@ import StackFunction from './StackFunction.jsx';
 
 import '../../css/styles.css';
 
+// function CallStorage(props) {
+//   const { storage } = props;
+//   return (
+//     <div className={this.props.className}>
+//       {this.props.className}
+//       {storage}
+//     </div>
+//   );
+//}
 class CallStorage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      stack: []
-    };
+  }
+  componentDidUpdate(prevProps) {
+    // if (this.props.storage !== prevProps.storage) {
+    //   setTimeout(() => {
+    //     this.props.popStack(this.props.className);
+    //   }, 2000);
+    // }
+    // this.interval = setTimeout(() => this.setState({ stack: this.props }), 3000);
   }
 
   render() {
-    const { stack } = this.state;
+    const { storage, className } = this.props;
     return (
-      <div className={this.props.className} style={this.state.divStyle}>
-        {this.props.className}
-        {stack}
+      <div className={className}>
+        {className}
+        {storage}
       </div>
     );
   }
