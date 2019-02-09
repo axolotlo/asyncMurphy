@@ -9,7 +9,6 @@ const config = require('./../webpack.config.js');
 
 const compiler = webpack(config);
 
-
 // const sequelize = require('sequelize')
 
 const userController = require('./../db/user/userController');
@@ -18,9 +17,11 @@ const cookieController = require('./util/cookieController');
 
 const app = express();
 
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath,
-}));
+app.use(
+  webpackDevMiddleware(compiler, {
+    publicPath: config.output.publicPath
+  })
+);
 
 // /////////////////////////////
 // connect to Postgres database here
@@ -66,28 +67,31 @@ app.get('/oauth', (req, res) => {
     `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${secret}&code=${code}`,
 
     (err, response) => {
-      const url = `https://api.github.com/user?${  response.body}`;
+      const url = `https://api.github.com/user?${response.body}`;
 
       const options = {
         url,
-headers: {
+        headers: {
           'User-Agent': 'request',
-          Accept: 'application/vnd.github.v3+json',
-        },
+          Accept: 'application/vnd.github.v3+json'
+        }
       };
 
       request.get(options, (error, data) => {
         console.log(data);
       });
-    },
+    }
   );
 });
+function parse(input) {
+  return input.match(/setTimeout\((.*)\,(.*)\)/);
+}
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
-// Parse here
+  const result = parse(program);
+  res.json(result);
 });
-
 
 app.listen(3000);
 
