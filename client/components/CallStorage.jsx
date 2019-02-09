@@ -13,8 +13,16 @@ import '../../css/styles.css';
 //   );
 //}
 class CallStorage extends Component {
-  componentDidUpdate() {
-    this.interval = setTimeout(() => this.setState({ stack: this.props }), 3000);
+  constructor(props) {
+    super(props);
+  }
+  componentDidUpdate(prevProps) {
+    // if (this.props.storage !== prevProps.storage) {
+    //   setTimeout(() => {
+    //     this.props.popStack(this.props.className);
+    //   }, 2000);
+    // }
+    // this.interval = setTimeout(() => this.setState({ stack: this.props }), 3000);
   }
 
   render() {

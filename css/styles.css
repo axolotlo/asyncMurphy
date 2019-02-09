@@ -1,15 +1,21 @@
-.textBox { grid-area: textbox; }
-.callbackQueue { grid-area: cbq; }
-.callStack { grid-area: callstack; }
-.webApi { grid-area: webApi; }
-
+.textBox {
+  grid-area: textbox;
+}
+.callBackQueue {
+  grid-area: cbq;
+}
+.callStack {
+  grid-area: callstack;
+}
+.webApi {
+  grid-area: webApi;
+}
 
 .grid-container {
   display: grid;
-  grid-template-areas:
-    'textbox cbq callstack webApi';
+  grid-template-areas: 'textbox cbq callstack webApi';
   grid-gap: 10px;
-  background-color: #2196F3;
+  background-color: #2196f3;
   padding: 10px;
 }
 

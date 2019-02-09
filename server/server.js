@@ -86,14 +86,23 @@ app.get('/oauth', (req, res) => {
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
+  let criteria = [/setTimeout\((.*)\,(.*)\)/, /console.log\((.*)\)/];
   if (program[program.length - 1] !== ';') return res.json('Error');
-  const result = program.match(/setTimeout\((.*)\,(.*)\)/);
+  // const result = program.match(/setTimeout\((.*)\,(.*)\)/);
+  const newResult = {};
 
-  const newResult = {
-    result,
-    type: 'async'
-  };
-  res.json(result);
+  if (program.match(criteria[0])) {
+    newResult.isAsync = true;
+    newResult.result = program.match(criteria[0]);
+  } else if (program.match(criteria[1])) {
+    newResult.isAsync = false;
+    newResult.result = program.match(criteria[1]);
+  }
+  if (newResult.result) {
+    console.log('result is ', newResult);
+    return res.json(newResult);
+  }
+  return res.json('Error');
 });
 
 app.listen(3000);
