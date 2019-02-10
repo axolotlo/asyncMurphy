@@ -1,0 +1,36 @@
+.textBox {
+  grid-area: textbox;
+}
+.callBackQueue {
+  grid-area: cbq;
+}
+.callStack {
+  grid-area: callstack;
+}
+.webApi {
+  grid-area: webApi;
+}
+.output {
+  grid-area: output;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'textbox cbq callstack webApi'
+    'output output output output';
+  grid-gap: 10px;
+  background-color: #2196f3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.flex-container {
+  display: flex;
+}
