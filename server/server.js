@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const config = require('./../webpack.config.js');
-
-const compiler = webpack(config);
-=======
 const esprima = require('esprima');
->>>>>>> 77f6e0ef1d31340d939cb5e2fc8f59b01c43f6ed
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -20,15 +11,9 @@ const compiler = webpack(config);
 
 // const sequelize = require('sequelize')
 
-<<<<<<< HEAD
-// const userController = require('./../db/user/userController');
-// const sessionController = require('./session/sessionController')
-// const cookieController = require('./util/cookieController');
-=======
 const userController = require('./../db/user/userController');
 const sessionController = require('./session/sessionController');
 const cookieController = require('./util/cookieController');
->>>>>>> 77f6e0ef1d31340d939cb5e2fc8f59b01c43f6ed
 
 const app = express();
 
@@ -40,17 +25,9 @@ app.use(
 
 // app.use('/src', express.static(__dirname + '/src'));
 
-<<<<<<< HEAD
-// app.use(express.static(__dirname + '/public'));
-
-///////////////////////////////
-//connect to Postgres database here
-////////////////////////////
-=======
 // /////////////////////////////
 // connect to Postgres database here
 // //////////////////////////
->>>>>>> 77f6e0ef1d31340d939cb5e2fc8f59b01c43f6ed
 
 // app.set(//insert react);
 
@@ -64,19 +41,6 @@ app.use(cookieParser());
 // });
 
 // Render to signup page
-<<<<<<< HEAD
-// app.get('/signup', (req, res) => {
-//   res.render('./../client/signup', { error: null });
-// });
-//
-//Post to signup page
-// app.post('/signup', userController.createUser, sessionController.createJwt);
-
-//Post to login page
-// app.post('/login', userController.verifyUser);
-
-//able to see only if logged in
-=======
 app.get('/signup', (req, res) => {
   res.render('./../client/signup', { error: null });
 });
@@ -88,7 +52,6 @@ app.get('/signup', (req, res) => {
 // app.post('/login', userController.verifyUser);
 
 // able to see only if logged in
->>>>>>> 77f6e0ef1d31340d939cb5e2fc8f59b01c43f6ed
 // app.get('/isLoggedin', sessionController.checkJwt, (req, res) => {
 //   userController.getAllUsers((err, users) => {
 //     if (err) throw err;
