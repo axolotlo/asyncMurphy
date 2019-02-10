@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const config = require('./../webpack.config.js');
+
 const compiler = webpack(config);
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,15 +10,17 @@ const cookieParser = require('cookie-parser');
 const request = require('request');
 //const sequelize = require('sequelize')
 
-const userController = require('./../db/user/userController');
-const sessionController = require('./session/sessionController')
-const cookieController = require('./util/cookieController');
+// const userController = require('./../db/user/userController');
+// const sessionController = require('./session/sessionController')
+// const cookieController = require('./util/cookieController');
 
 const app = express();
 
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
 }));
+
+// app.use(express.static(__dirname + '/public'));
 
 ///////////////////////////////
 //connect to Postgres database here
@@ -29,28 +32,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Render to index file
-app.get('/', cookieController.setCookie, (req, res) => {
-  res.render('./../client/index');
-});
+// app.get('/', cookieController.setCookie, (req, res) => {
+//   res.render('./../client/index');
+// });
 
 // Render to signup page
-app.get('/signup', (req, res) => {
-  res.render('./../client/signup', { error: null });
-});
-
+// app.get('/signup', (req, res) => {
+//   res.render('./../client/signup', { error: null });
+// });
+//
 //Post to signup page
-app.post('/signup', userController.createUser, sessionController.createJwt);
+// app.post('/signup', userController.createUser, sessionController.createJwt);
 
 //Post to login page
-app.post('/login', userController.verifyUser);
+// app.post('/login', userController.verifyUser);
 
 //able to see only if logged in
-app.get('/isLoggedin', sessionController.checkJwt, (req, res) => {
-  userController.getAllUsers((err, users) => {
-    if (err) throw err;
-    res.render('./../client/isLoggedIn', { users: users });
-  });
-});
+// app.get('/isLoggedin', sessionController.checkJwt, (req, res) => {
+//   userController.getAllUsers((err, users) => {
+//     if (err) throw err;
+//     res.render('./../client/isLoggedIn', { users: users });
+//   });
+// });
 
 //Oauth process
 app.get('/oauth', (req, res) => {
