@@ -8,7 +8,6 @@ client.connect();
 const createQuery = `
   CREATE TABLE IF NOT EXISTS users (
     _id serial PRIMARY KEY,
-    id VARCHAR(450) NOT NULL,
     username VARCHAR(450) NOT NULL,
     password VARCHAR(450) NOT NULL
   )
@@ -26,5 +25,4 @@ module.exports = {
   query(text, params, callback) {
     return client.query(text, params, callback);
   },
-}
-;
+};

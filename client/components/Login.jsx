@@ -1,11 +1,22 @@
-import React from 'react';
-
-function handleSubmit(event) {
-  event.preventDefault();
-  fetch('/')
-}
+import React, { useState } from 'react';
 
 function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        password
+      })
+    })
+  }
 
   return (
     <div>

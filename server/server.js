@@ -39,6 +39,7 @@ app.use(cookieParser());
 
 // send signup post request to postgres DB
 app.post('/signup', userController.registerUser);
+app.post('/login', userController.authenticateUser);
 
 // Post to signup page
 // app.post('/signup', userController.createUser, sessionController.createJwt);
