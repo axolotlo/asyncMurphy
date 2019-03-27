@@ -5,22 +5,21 @@ const cookieParser = require('cookie-parser');
 const request = require('request');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
+
 const config = require('./../webpack.config.js');
+
+const userController = require('./controllers/userController.js');
 
 const compiler = webpack(config);
 
 // const sequelize = require('sequelize')
 
-const userController = require('./../db/user/userController');
-const sessionController = require('./session/sessionController');
-const cookieController = require('./util/cookieController');
-
 const app = express();
 
 app.use(
   webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath
-  })
+    publicPath: config.output.publicPath,
+  }),
 );
 
 // app.use('/src', express.static(__dirname + '/src'));
@@ -29,21 +28,18 @@ app.use(
 // connect to Postgres database here
 // //////////////////////////
 
-// app.set(//insert react);
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Render to index file
-app.get('/', cookieController.setCookie, (req, res) => {
-  res.render('./../client/index');
-});
+// app.get('/', cookieController.setCookie, (req, res) => {
+//   res.render('./../client/index');
+// });
 
-// Render to signup page
-app.get('/signup', (req, res) => {
-  res.render('./../client/signIn', { error: null });
-});
+// send signup post request to postgres DB
+app.post('/signup', userController.registerUser);
+app.post('/login', userController.authenticateUser);
 
 // Post to signup page
 // app.post('/signup', userController.createUser, sessionController.createJwt);
@@ -75,26 +71,26 @@ app.get('/oauth', (req, res) => {
         url,
         headers: {
           'User-Agent': 'request',
-          Accept: 'application/vnd.github.v3+json'
-        }
+          Accept: 'application/vnd.github.v3+json',
+        },
       };
 
       request.get(options, (error, data) => {
         console.log(data);
       });
-    }
+    },
   );
 });
 
 app.post('/parse', (req, res) => {
   const { program } = req.body;
-  let criteria = [/setTimeout\((.*)\,(.*)\)/, /console.log\((.*)\)/];
+  const criteria = [/setTimeout\((.*)\,(.*)\)/, /console.log\((.*)\)/];
   if (program[program.length - 1] !== ';') return res.json('Error');
   // const result = program.match(/setTimeout\((.*)\,(.*)\)/);
   const newResult = {};
 
   if (program.match(criteria[0])) {
-    let array = program.match(criteria[0]);
+    const array = program.match(criteria[0]);
     newResult.isAsync = true;
     // newResult.result = program.match(criteria[0]);
     newResult.expression = array[0];
@@ -114,7 +110,7 @@ app.post('/parse', (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('listening on port 3000...')
+  console.log('listening on port 3000...');
 });
 
 module.exports = app;
