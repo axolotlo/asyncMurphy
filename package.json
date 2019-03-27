@@ -44,6 +44,7 @@
     "jsonwebtoken": "^8.4.0",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "react-router-dom": "^5.0.0",
     "request": "^2.88.0",
     "sequelize": "^3.13.0",
     "webpack": "^4.29.3",
