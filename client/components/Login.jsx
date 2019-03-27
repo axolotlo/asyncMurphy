@@ -16,6 +16,14 @@ function Login() {
         password
       })
     })
+      .then(data => {
+        // console.log(data.text());
+        return data.text();
+      })
+      .then(result => {
+        console.log("THIS IS THE RESULT");
+        console.log(result);
+      })
   }
 
   return (

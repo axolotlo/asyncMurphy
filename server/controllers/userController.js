@@ -48,6 +48,7 @@ userController.authenticateUser = (req, res) => {
           } else if (result2) {
             console.log('LOGGED IN!');
             console.log(result.rows[0]);
+            res.send(username);
           } else {
             console.log('WRONG PASSWORD!');
           }
