@@ -1,24 +1,17 @@
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import React from 'react';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
+import Forum from './Forum.jsx';
+import Home from './Home.jsx';
 
 function AppRouter() {
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to='/login'>Login</Link>
-          </li>
-          <li>
-            <Link to='/signup'>Signup</Link>
-          </li>
-        </ul>
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={SignUp} />
-
-      </div>
+      <Route exact path='/' component={Home} />
+      <Route path='/login' component={Login} />
+      <Route path='/signup' component={SignUp} />
+      <Route path='/forum' component={Forum} />
     </Router>
   )
 }
