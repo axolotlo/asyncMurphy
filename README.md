@@ -3,7 +3,9 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/axolotlo/asyncMurphy/pulls) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Release Beta](https://img.shields.io/badge/release-beta-blue.svg)<br/><br/>
  Designed to help developers understand the Node event event loop by animating the transition of functions from the call stack to the web api to the call back queue . <br/>
-
+<p align="center">
+  <img src ="./pictures/ScreenShot.png" width="200"/>
+</p>
 
  **AsyncMurphy is in active development. Follow this repo for contribution guidelines.**
 ## Getting Started
@@ -18,8 +20,8 @@ Currently handling setTimeout only for the asynchronous function.
 To install locally, setup instructions are as follows:
 
 1. `git clone --single-branch --branch master https://github.com/axolotlo/asyncMurphy.git`
-2. npm run build
-3. npm start
+2. `npm run build`
+3. `npm start`
 
 Type in you function enclosed in setTimout() and watch the the flow.
 
