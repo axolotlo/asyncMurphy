@@ -33,5 +33,5 @@ Type in your function enclosed in setTimout() and watch the the flow. Try:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENCE.md](./LICENCE) file for details
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details
 
