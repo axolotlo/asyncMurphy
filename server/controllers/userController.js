@@ -38,6 +38,7 @@ userController.authenticateUser = (req, res) => {
         console.log(err.stack);
       } else if (!result.rows.length) {
         console.log('USER NOT FOUND');
+        res.send('USER NOT FOUND');
       } else {
         // console.log(result);
         // console.log(result.rows[0]);
@@ -50,7 +51,8 @@ userController.authenticateUser = (req, res) => {
             console.log(result.rows[0]);
             res.send(username);
           } else {
-            console.log('WRONG PASSWORD!');
+            console.log('WRONG PW!');
+            res.send('WRONG PW');
           }
         });
       }
