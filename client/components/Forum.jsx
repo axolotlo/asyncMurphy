@@ -16,6 +16,10 @@ const Forum = (props) => {
       <div>
         <div>USER: {props.location.state.username}</div>
         <input type="button" value="LOG OUT" onClick={logout} />
+        <div id="threads">
+          <button>ADD THREAD</button>
+
+        </div>
       </div>
     ) :
     (

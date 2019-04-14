@@ -47,7 +47,7 @@ function Login() {
       </div >
     ) :
     (
-      <Redirect to={{ pathname: "/forum", state: { isLoggedIn, username, setLoggedIn } }} />
+      <Redirect to={{ pathname: "/forum", state: { isLoggedIn, username } }} />
     )
   // (<Redirect to='/forum' />)
 }
