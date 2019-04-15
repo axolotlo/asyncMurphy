@@ -41,6 +41,7 @@ app.use(cookieParser());
 app.post('/signup', userController.registerUser);
 app.post('/login', userController.authenticateUser);
 app.post('/newthread', userController.userStartThread);
+app.get('/getthreads', userController.getAllThreads);
 
 // Post to signup page
 // app.post('/signup', userController.createUser, sessionController.createJwt);

@@ -79,4 +79,22 @@ userController.userStartThread = (req) => {
   );
 };
 
+userController.getAllThreads = (req, res) => {
+  db.query(
+    'SELECT question FROM threads',
+    null,
+    (err, result) => {
+      if (err) {
+        res.send(err.stack);
+      } else if (!result.rows.length) {
+        console.log('THREADS NOT FOUND');
+        res.send('THREADS NOT FOUND');
+      } else {
+        console.log(result);
+        res.send(result);
+      }
+    },
+  );
+};
+
 module.exports = userController;
