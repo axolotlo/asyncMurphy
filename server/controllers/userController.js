@@ -60,20 +60,20 @@ userController.authenticateUser = (req, res) => {
   );
 };
 
-userController.userStartThread = (req, res) => {
+userController.userStartThread = (req) => {
   const { username, question } = req.body;
   db.query(
-    `INSERT INTO users(username, password) 
+    `INSERT INTO threads(username, question) 
     VALUES($1, $2)`,
     [
       username,
-      hash,
+      question,
     ],
     (err) => {
       if (err) {
         console.log(err.stack);
       } else {
-        console.log('CREATED USER', username);
+        console.log('CREATED QUESTION', question, ' ASKED BY ', username);
       }
     },
   );
