@@ -60,4 +60,23 @@ userController.authenticateUser = (req, res) => {
   );
 };
 
+userController.userStartThread = (req, res) => {
+  const { username, question } = req.body;
+  db.query(
+    `INSERT INTO users(username, password) 
+    VALUES($1, $2)`,
+    [
+      username,
+      hash,
+    ],
+    (err) => {
+      if (err) {
+        console.log(err.stack);
+      } else {
+        console.log('CREATED USER', username);
+      }
+    },
+  );
+};
+
 module.exports = userController;

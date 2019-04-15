@@ -10,7 +10,12 @@ const createQuery = `
     _id serial PRIMARY KEY,
     username VARCHAR(450) NOT NULL,
     password VARCHAR(450) NOT NULL
-  )
+  );
+  CREATE TABLE IF NOT EXISTS threads (
+    _id serial PRIMARY KEY,
+    username VARCHAR(450) NOT NULL,
+    question VARCHAR(450) NOT NULL
+  );
 `;
 
 client.query(createQuery, (err) => {
