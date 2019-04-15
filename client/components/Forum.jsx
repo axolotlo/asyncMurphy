@@ -2,12 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { Redirect, withRouter } from 'react-router-dom'
 
 const Forum = (props) => {
-  console.log(props.location.state)
+  // console.log(props.location.state)
   const [question, setQuestion] = useState('')
-  const [threads, addThread] = useState([]);
+  const [threads, setThreads] = useState([]);
+  const [isClicked, setClicked] = useState(false);
+
+  useEffect(() => {
+    fetch('/getthreads')
+      .then((response) => response.json())
+      .then(result => {
+        console.log(result.rows);
+        result.rows.forEach(row => {
+          setThreads(threads => threads.concat(<p>{row.question}</p>))
+          console.log(threads)
+          console.log("ROW.QUESTION", row.question);
+        })
+      });
+  }, [isClicked])
 
   const handleClick = (event) => {
     event.preventDefault();
+    setThreads([]);
+    setClicked(!isClicked);
+
     if (question) {
       fetch('/newthread', {
         method: 'POST',
@@ -33,16 +50,7 @@ const Forum = (props) => {
     props.location.state.setLoggedIn(false);
   }
 
-  useEffect(() => {
-    fetch('/getthreads')
-      .then((response) => response.json())
-      .then(result => {
-        console.log(result.rows);
-        result.rows.forEach(row => {
-          addThread([...threads, row.question])
-        })
-      });
-  })
+
   // return (<div>forum</div>)
   return (props.location.state.isLoggedIn) ?
     (
@@ -52,7 +60,7 @@ const Forum = (props) => {
         <div id="threads">
           Ask a question:<input type="text" value={question} onChange={event => setQuestion(event.target.value)} />
           <button onClick={handleClick}>ADD THREAD</button>
-
+          {threads}
         </div>
       </div>
     ) :
@@ -63,5 +71,13 @@ const Forum = (props) => {
       }} />
     )
 }
+
+// function getThreads() {
+
+
+
+//   return threads;
+// }
+
 
 export default withRouter(Forum);
