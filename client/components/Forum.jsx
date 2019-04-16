@@ -13,7 +13,7 @@ const Forum = (props) => {
       .then(result => {
         console.log(result.rows);
         result.rows.forEach(row => {
-          setThreads(threads => threads.concat(<p>{row.question}</p>))
+          setThreads(threads => threads.concat(<p>{row.username}: {row.question}</p>))
           console.log(threads)
           console.log("ROW.QUESTION", row.question);
         })

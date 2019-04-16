@@ -81,7 +81,7 @@ userController.userStartThread = (req) => {
 
 userController.getAllThreads = (req, res) => {
   db.query(
-    'SELECT question FROM threads',
+    'SELECT * FROM threads',
     null,
     (err, result) => {
       if (err) {
