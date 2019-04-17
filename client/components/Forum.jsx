@@ -3,7 +3,6 @@ import { Redirect, Link, withRouter } from 'react-router-dom';
 import Question from './Question.jsx';
 
 const Forum = (props) => {
-  // console.log(props.location.state)
   const [question, setQuestion] = useState('')
   const [threads, setThreads] = useState([]);
   const [isClicked, setClicked] = useState(false);
@@ -19,11 +18,8 @@ const Forum = (props) => {
     fetch('/getthreads')
       .then((response) => response.json())
       .then(result => {
-        // console.log(result.rows);
         result.rows.forEach(row => {
           setThreads(threads => threads.concat(<Question key={row._id} id={row._id} onQuestionClick={redirectTo} user={row.username} question={row.question}></Question>))
-          // console.log(threads)
-          // console.log("ROW.QUESTION", row.question);
         })
       });
   }, [isClicked])
