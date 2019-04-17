@@ -1,6 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
-const Forum = (props) => {
+const Thread = (props) => {
 
-  return (<div>{state.location.props}</div>)
+  return (<div>{props}</div>)
 }
+
+export default withRouter(Thread);

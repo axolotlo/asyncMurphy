@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, Link, withRouter } from 'react-router-dom'
+import { Redirect, Link, withRouter } from 'react-router-dom';
+import Question from './Question.jsx';
 
 const Forum = (props) => {
   // console.log(props.location.state)
@@ -17,7 +18,7 @@ const Forum = (props) => {
       .then(result => {
         // console.log(result.rows);
         result.rows.forEach(row => {
-          setThreads(threads => threads.concat(<p key={row._id} onClick={redirectTo}>{row.username}: {row.question}</p>))
+          setThreads(threads => threads.concat(<Question key={row._id} id={row._id} onQuestionClick={redirectTo} user={row.username} question={row.question}></Question>))
           // console.log(threads)
           // console.log("ROW.QUESTION", row.question);
         })
