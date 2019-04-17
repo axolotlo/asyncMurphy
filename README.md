@@ -26,7 +26,7 @@ To install locally, setup instructions are as follows:
 3. `npm start`
 
 Type in your function enclosed in setTimout() and watch the the flow. Try:
-`setTimeout(function(){ alert("Hello World"); }, 3000);`
+`setTimeout(() => { console.log("Hello World"); }, 3000);`
 
 ## Authors
 [Dan Shu](https://github.com/danshuu) | [Franklin Pinnock](https://github.com/pinnockf) | [Kia Colbert](https://github.com/kiacolbert) | [Steven Rosas](https://github.com/srosas)
