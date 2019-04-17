@@ -42,6 +42,7 @@ app.post('/signup', userController.registerUser);
 app.post('/login', userController.authenticateUser);
 app.post('/newthread', userController.userStartThread);
 app.get('/getthreads', userController.getAllThreads);
+app.get('/thread/:id', userController.getThread);
 
 // Post to signup page
 // app.post('/signup', userController.createUser, sessionController.createJwt);

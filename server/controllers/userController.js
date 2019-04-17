@@ -48,7 +48,7 @@ userController.authenticateUser = (req, res) => {
             console.log(err);
           } else if (result2) {
             console.log('LOGGED IN!');
-            console.log(result.rows[0]);
+            // console.log(result.rows[0]);
             res.send(username);
           } else {
             console.log('WRONG PW!');
@@ -90,11 +90,15 @@ userController.getAllThreads = (req, res) => {
         console.log('THREADS NOT FOUND');
         res.send('THREADS NOT FOUND');
       } else {
-        console.log(result);
+        // console.log(result);
         res.send(result);
       }
     },
   );
+};
+
+userController.getThread = (req, res) => {
+  console.log(req.params.id);
 };
 
 module.exports = userController;

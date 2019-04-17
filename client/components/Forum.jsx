@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect, Link, withRouter } from 'react-router-dom'
 
 const Forum = (props) => {
   // console.log(props.location.state)
@@ -11,11 +11,11 @@ const Forum = (props) => {
     fetch('/getthreads')
       .then((response) => response.json())
       .then(result => {
-        console.log(result.rows);
-        result.rows.forEach(row => {
-          setThreads(threads => threads.concat(<p>{row.username}: {row.question}</p>))
-          console.log(threads)
-          console.log("ROW.QUESTION", row.question);
+        // console.log(result.rows);
+        result.rows.forEach((row, i) => {
+          setThreads(threads => threads.concat(<p key={i}>{row.username}: {row.question}</p>))
+          // console.log(threads)
+          // console.log("ROW.QUESTION", row.question);
         })
       });
   }, [isClicked])
@@ -44,6 +44,10 @@ const Forum = (props) => {
     }
   }
 
+  const testParam = () => {
+    fetch('/thread/1');
+  }
+
   const logout = () => {
     props.location.state.isLoggedIn = false;
     console.log(props.location.state.isLoggedIn);
@@ -60,6 +64,7 @@ const Forum = (props) => {
         <div id="threads">
           Ask a question:<input type="text" value={question} onChange={event => setQuestion(event.target.value)} />
           <button onClick={handleClick}>ADD THREAD</button>
+          <button onClick={testParam}>TEST PARAM</button>
           {threads}
         </div>
       </div>
