@@ -7,13 +7,17 @@ const Forum = (props) => {
   const [threads, setThreads] = useState([]);
   const [isClicked, setClicked] = useState(false);
 
+  const redirectTo = (id) => {
+    props.history.push('/thread/' + id)
+  }
+
   useEffect(() => {
     fetch('/getthreads')
       .then((response) => response.json())
       .then(result => {
         // console.log(result.rows);
-        result.rows.forEach((row, i) => {
-          setThreads(threads => threads.concat(<p key={i}>{row.username}: {row.question}</p>))
+        result.rows.forEach(row => {
+          setThreads(threads => threads.concat(<p key={row._id} onClick={redirectTo}>{row.username}: {row.question}</p>))
           // console.log(threads)
           // console.log("ROW.QUESTION", row.question);
         })
