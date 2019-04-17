@@ -8,8 +8,11 @@ const Forum = (props) => {
   const [threads, setThreads] = useState([]);
   const [isClicked, setClicked] = useState(false);
 
-  const redirectTo = (id) => {
-    props.history.push('/thread/' + id)
+  const redirectTo = (id, user, question) => {
+    props.history.push({
+      pathname: '/thread/' + id,
+      state: { user, question }
+    })
   }
 
   useEffect(() => {
